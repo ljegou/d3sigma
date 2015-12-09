@@ -1,0 +1,22 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #DDDDDD;
+    margin: 10px;
+}
+p {
+    text-align: justify; color: #000; font-size: 0.70em; line-height: 1.25em;
+}
+li {
+    text-decoration: none; list-style-type: none; display: block; color: #fff;
+}
+h1 {
+    font-family: Montserrat, sans-serif;
+    font-size: 24px; font-weight: 800;
+    text-align: center;
+}
+
+h2 {
+    font-family: Montserrat, sans-serif;
+    font-size: 18px; font-weight: 800;
+    text-align: center;
+}

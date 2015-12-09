@@ -264,7 +264,7 @@ iframe {
   </section>
 
   <section>
-    <h2>Playground</h2>
+    <h2>Bac à sable</h2>
     <iframe style="height:600px" src="estuary.html#playground-init"></iframe>
   </section>
   <script>
@@ -288,48 +288,6 @@ function anchorify(text) {
   return text.replace(/ /, '-').toLowerCase()
 }
 
-var toc = []
-var sections = d3.selectAll(".toplevel").each(function() {
-  console.log("dis", this)
-  var dis = d3.select(this);
-  dis.selectAll("h1")
-  .attr("id", function(d) { 
-    console.log("this", this)
-    var id = anchorify(this.innerText)
-    toc.push({type: "h1", id: id, text: this.innerText})
-    return id
-  })
-  /*
-  dis.selectAll("h2")
-    .attr("id", function(d) { 
-      var id = anchorify(this.innerText)
-      toc.push({type: "h2", id: id, text: this.innerText})
-      return id
-    })
-  dis
-  .selectAll("h3")
-    .attr("id", function(d) { 
-      var id = anchorify(this.innerText)
-      toc.push({type: "h3", id: id, text: this.innerText})
-      return id
-    })
-*/
-  dis.selectAll("section.level2").each(function() {
-    var dis2 = d3.select(this)
-    dis2.selectAll("h2")
-    .attr("id", function(d) { 
-      var id = anchorify(this.innerText)
-      toc.push({type: "h2", id: id, text: this.innerText})
-      return id
-    })
-    dis2.selectAll("h3")
-    .attr("id", function(d) { 
-      var id = anchorify(this.innerText)
-      toc.push({type: "h3", id: id, text: this.innerText})
-      return id
-    })
-  })
-})
   </script>
 </body>
 </html>
