@@ -1,9 +1,11 @@
+<script src="/scripts/d3.v3.js"></script>
+<script>
 //Largeur et hauteur du graphe
 var larg = 500;
 var haut = 100;
 var barPadding = 1; //Padding des barres
 
-var dataest = [
+var datatest = [
     {"mois":"janvier", "temperature":5},
     {"mois":"février", "temperature":10},
     {"mois":"mars", "temperature":13},
@@ -40,3 +42,4 @@ var svg = d3.select("body")
 	})
 	.attr("fill", "teal");
 }
+</script>
