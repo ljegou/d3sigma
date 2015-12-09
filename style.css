@@ -18,6 +18,12 @@ h2 {
     text-align: left;
 }
 
+h3 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px; font-weight: bold;
+    text-align: left;
+}
+
 * {
   box-sizing: border-box;
 }
