@@ -58,12 +58,18 @@ svg.selectAll("circle")
 var xAxis = d3.svg.axis()
 	.scale(xScale)
 	.ticks(8) //Nombre approx. de barbules
-	.orient("bottom");
+	.orient("bottom")
+	.attr("fill", "none")
+	.attr("stroke", "black")
+	.attr("shape-rendering"; "crisp-edges");
 
 var yAxis = d3.svg.axis()
 	.scale(yScale)
 	.orient("left")
-	.ticks(6);
+	.ticks(6)
+	.attr("fill", "none")
+	.attr("stroke", "black")
+	.attr("shape-rendering"; "crisp-edges");
 
 svg.append("g")
 	.attr("class", "axis") //Assigne la classe CSS "axis"

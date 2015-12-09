@@ -43,7 +43,7 @@ svg.selectAll("circle")
 	.enter()
 	.append("text")
 	.text(function(d) {
-		return d[1];
+		return d[2];
 	})
 	.attr("x", function(d){
 		return xScale(d[0]) + 4;
