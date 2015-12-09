@@ -2,12 +2,6 @@
 var larg = 500;
 var haut = 100;
 var barPadding = 2; //Padding des barres
-var nbb = dataset.length; //Nb de barres
-var lb = ((larg - nbb) / nbb); //Largeur barre
-var ch = (haut / d3.max(dataset, function (d) {
-	return d.temperature //Coef. hauteur.
-}));
-
 var datatest = [
     {"mois":"janvier", "temperature":5},
     {"mois":"février", "temperature":10},
@@ -22,6 +16,11 @@ var datatest = [
     {"mois":"novembre", "temperature":11},
     {"mois":"décembre", "temperature":12}
 ];
+var nbb = datatest.length; //Nb de barres
+var lb = ((larg - nbb) / nbb); //Largeur barre
+var ch = (haut / d3.max(dataset, function (d) {
+	return d.temperature //Coef. hauteur.
+}));
 
 //Creation de l'élément SVG
 var svg = d3.select("body")
