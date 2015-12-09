@@ -2,10 +2,6 @@ p {
     text-align: justify; color: #000;
 }
 
-li {
-    text-decoration: none; list-style-type: none; display: block; color: #fff;
-}
-
 h1 {
     font-family: 'Roboto', sans-serif;
     font-size: 40px; font-weight: bold;
@@ -44,10 +40,6 @@ body > section {
 
 .session-title h3 {
   display: inline;
-}
-
-ul {
-  list-style: none;
 }
 
 a.h1 {
