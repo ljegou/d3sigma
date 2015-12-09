@@ -4,19 +4,10 @@ var haut = 100;
 var padding = 20;
 
 var datatest = [
-    {"mois":"janvier", "temperature":5},
-    {"mois":"février", "temperature":10},
-    {"mois":"mars", "temperature":13},
-    {"mois":"avril", "temperature":19},
-    {"mois":"mai", "temperature":21},
-    {"mois":"juin", "temperature":25},
-    {"mois":"juillet", "temperature":22},
-    {"mois":"août", "temperature":18},
-    {"mois":"septembre", "temperature":15},
-    {"mois":"octobre", "temperature":13},
-    {"mois":"novembre", "temperature":11},
-    {"mois":"décembre", "temperature":12}
-];
+[5, 20, 1], [480, 90, 4], [250, 50, 2], [100, 33, 1], [330, 95, 5],
+[410, 12, 3], [475, 44, 2], [25, 67, 4], [85, 21, 5], [220, 88, 2]
+]
+;
 var xScale = d3.scale.linear()
 	.domain([0, d3.max(datatest, function(d) { return d[0]; })])
 	.range([padding, larg - padding * 2]);
@@ -26,7 +17,7 @@ var yScale = d3.scale.linear()
 	.range([haut - padding , padding]);
 
 var rScale = d3.scale.linear()
-	.domain([0, d3.max(datatest, function(d) { return d[1]; })])
+	.domain([0, d3.max(datatest, function(d) { return d[3]; })])
 	.range([2, 5]);
 
  var svg = d3.select("body")
