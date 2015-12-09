@@ -1,3 +1,16 @@
+<style>
+	.axis path,
+	.axis line {
+		fill: none;
+		stroke: black;
+		shape-rendering: crispEdges;
+	}
+	axis text {
+		font-family: sans-serif;
+		font-size: 11px;
+	}
+</style>
+<script>
 //Largeur et hauteur du graphe
 var larg = 500;
 var haut = 100;
@@ -58,18 +71,12 @@ svg.selectAll("circle")
 var xAxis = d3.svg.axis()
 	.scale(xScale)
 	.ticks(8) //Nombre approx. de barbules
-	.orient("bottom")
-	.attr("fill", "none")
-	.attr("stroke", "black")
-	.attr("shape-rendering"; "crisp-edges");
+	.orient("bottom");
 
 var yAxis = d3.svg.axis()
 	.scale(yScale)
 	.orient("left")
-	.ticks(6)
-	.attr("fill", "none")
-	.attr("stroke", "black")
-	.attr("shape-rendering"; "crisp-edges");
+	.ticks(6);
 
 svg.append("g")
 	.attr("class", "axis") //Assigne la classe CSS "axis"
@@ -79,4 +86,5 @@ svg.append("g")
 svg.append("g")
 	.attr("class", "axis")
 	.attr("transform", "translate(" + padding + ",0)")
-	.call(yAxis);	
+	.call(yAxis);
+</script>
