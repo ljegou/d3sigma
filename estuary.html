@@ -238,7 +238,7 @@ function gotContent(content) {
       if (slug)
         d3.xhr('./examples/' + slug + '.js')
           .header('Content-Type', 'text/javascript')
-          .post(originalCode, function(err, res) {
+          .get(originalCode, function(err, res) {
             if(err) throw err
           })
       //remove the last instance
