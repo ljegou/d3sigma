@@ -59,9 +59,6 @@ iframe {
   <h1>Introduction à D3</h1>
   <p>Ce site est un tutoriel d'introduciton à la bibliothèque de fonctions <a href="http://www.d3js.org">D3</a>, qui permet de réaliser des représentation graphiques vectorielles interactives dans une page web.
   </p>
-  <section class="toc">
-    <ul></ul>
-  </section>
   <section>
     <h3>Cette page est interactive !</h3>
     <p>
@@ -333,18 +330,6 @@ var sections = d3.selectAll(".toplevel").each(function() {
     })
   })
 })
-console.log(toc)
-d3.select(".toc ul").selectAll("li")
-.data(toc)
-.enter()
-.append("li")
-.append("a")
-.attr({
-  href: function(d) { return "#" + d.id },
-  class: function(d) { return d.type}
-})
-.text(function(d) { return d.text})
-
   </script>
 </body>
 </html>
