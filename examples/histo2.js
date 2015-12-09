@@ -56,7 +56,7 @@ svg.selectAll("text")
 		return d.temperature;
 	})
 	.attr("x", function(d, i) {
-		return (i * lb) + 12);
+		return (i * lb) + 12;
 	})
 	.attr("y", function(d) {
 		return haut - ((d.temperature * ch) - 12);

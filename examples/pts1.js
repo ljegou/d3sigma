@@ -18,19 +18,24 @@ var datatest = [
     {"mois":"décembre", "temperature":12}
 ];
 var xScale = d3.scale.linear()
-	.domain([0, d3.max(dataset, function(d) { return d[0]; })])
+	.domain([0, d3.max(datatest, function(d) { return d[0]; })])
 	.range([padding, larg - padding * 2]);
 
 var yScale = d3.scale.linear()
-	.domain([0, d3.max(dataset, function(d) { return d[1]; })])
+	.domain([0, d3.max(datatest, function(d) { return d[1]; })])
 	.range([haut - padding , padding]);
 
 var rScale = d3.scale.linear()
-	.domain([0, d3.max(dataset, function(d) { return d[1]; })])
+	.domain([0, d3.max(datatest, function(d) { return d[1]; })])
 	.range([2, 5]);
 
+ var svg = d3.select("body")
+	.append("svg")
+	.attr("width", larg)
+	.attr("height", haut);
+
 svg.selectAll("circle")
-	.data(dataset)
+	.data(datatest)
 	.enter()
 	.append("circle")
 	.attr("cx", function(d) {
@@ -43,7 +48,7 @@ svg.selectAll("circle")
 		return rScale(d[1]);
 	});
 	svg.selectAll("text")
-	.data(dataset)
+	.data(datatest)
 	.enter()
 	.append("text")
 	.text(function(d) {
