@@ -1,4 +1,3 @@
-<script>
 //Largeur et hauteur du graphe
 var larg = 500;
 var haut = 100;
@@ -40,4 +39,3 @@ var svg = d3.select("body")
 		return (d.temperature * 2); // Temperature de la donnée
 	})
 	.attr("fill", "teal");
-</script>
