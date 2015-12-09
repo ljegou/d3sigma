@@ -99,8 +99,8 @@ function gotContent(content) {
       var template = htmlCM.getValue()
       d3.xhr('./examples/' + slug + '.html')
         .header('Content-Type', 'text/html')
-        .post(template, function(err, res) {
-          //if(err) throw err
+        .get(template, function(err, res) {
+			if(err) throw err
         })
       template = templateModifier(template)
       //remove the last instance

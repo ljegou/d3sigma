@@ -25,7 +25,7 @@ var svg = d3.select("body")
 	.attr("height", haut);
 
 	svg.selectAll("rect")
-	.data(dataset)
+	.data(datatest)
 	.enter()
 	.append("rect")
 	.attr("x", function(d, i) {
