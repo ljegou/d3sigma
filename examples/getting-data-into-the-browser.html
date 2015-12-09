@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<script src="/scripts/d3.v3.js"></script>
+<body>
+</body>
+<script>
+d3.csv('/data/iris.csv', function(err, data) {
+  if (err) { throw err; }
+  d3.select('body').append('code')
+  	.append('pre')
+    .text(JSON.stringify(data, null, 2));
+});
+</script>
+</html>
