@@ -1,51 +1,588 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Tutoriel D3 Master 2 Sigma - 2015 by ljegou</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-dark.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta charset="utf-8">
+<link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="node_modules/codemirror/lib/codemirror.css">
+<link rel="stylesheet" href="node_modules/codemirror/theme/twilight.css">
+<style>
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+}
+h1 {
+  font-size: 4em;
+  font-family: 'Roboto', sans-serif;
+}
+body > section {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+.session-title h3 {
+  display: inline;
+}
 
-  </head>
-  <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/ljegou/d3sigma">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/ljegou/d3sigma/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/ljegou/d3sigma/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
+ul {
+  list-style: none;
 
-    <div class="wrapper">
+}
+
+a.h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+a.h2 {
+  font-size: 24px;
+  padding-left: 10px;
+}
+a.h3 {
+  font-size: 18px;
+  padding-left: 20px;
+}
+
+
+iframe {
+  border: none;
+  width: 1024px;
+}
+</style>
+<script src="scripts/d3.v3.js"></script>
+<script src="node_modules/codemirror/lib/codemirror.js"></script>
+<script src="node_modules/codemirror/mode/javascript/javascript.js"></script>
+<script src="node_modules/codemirror/mode/xml/xml.js"></script>
+<body>
+  <h1>Intro to D3 workshop</h1>
+  <p>This site is part of a d3.js workshop taking place <a href="https://docs.google.com/forms/d/1VgBUu7znZVllkVw2d6TISzsTjGDDviPF3vbo-Zlz6ME/viewform">May 2nd in San Francisco</a>. The workshop is geared towards people who are comfortable with data but haven't gotten deep into web programming. We only have 15 spots total and there will be 5 instructors/TAs supporting you.<a href="https://docs.google.com/forms/d/1VgBUu7znZVllkVw2d6TISzsTjGDDviPF3vbo-Zlz6ME/viewform">Click here to apply.</a> If you're accepted, the ticket costs $99.
+  </p>
+  <section class="toc">
+    <ul></ul>
+  </section>
+  <section>
+    <h3>This workshop is interactive!</h3>
+    <p>
+      Just like <a href="http://tributary.io">tributary.io</a>, the demos in this document are <a href="http://worrydream.com/ExplorableExplanations">explorable</a>! Any text section with a <b>black</b> background is editable. It's an "explorable workshop" and is not intended to stand alone but some may still find it useful. You can find the code for this page at on <a href="https://github.com/vicapow/d3-1-day-workshop">github</a>.
+    </p>
+    <p>
+      Find the <a href="html-playground.html">fullscreen html playground here.</a>
+    </p>
+  </section>
+  <section class="toplevel">
+    <span class="session-title">
+      <h1>Session 1</h1> - <span class="session-time">10am - 12pm</span>
+    </span>
+    <section class="level2">
+      <h2>Quick Intros</h2>
+      <ul>
+        <li>
+          <a href="http://twitter.com/vicapow">Victor Powell</a>
+          <span>Setosa</span>
+          <b>Instructor</b>
+        </li>
+        <li>
+          <a href="http://twitter.com/enjalot">Ian Johnson</a>
+          <span>Lever</span>
+          <b>TA</b>
+        </li>
+        <li>
+          <a href="https://twitter.com/shirleyxywu">Shirley Wu</a>
+          <span>Illumio</span>
+          <b>TA</b>
+        </li>
+        <li>
+          <a href="https://twitter.com/currankelleher">Curran Kelleher</a>
+          <span>Alpine Data Labs</span>
+          <b>TA</b>
+        </li>
+        <li>
+          <a href="http://twitter.com/milr0c">Miles McCrocklin</a>
+          <span>Facebook</span>
+          <b>TA</b>
+        </li>
+      </ul>
+    </section>
+    <section class="level2">
+      <h2>Getting Excited</h2>
+      <p>
+        <ul>
+          <li><a target="_blank" href="http://bl.ocks.org/mbostock">bl.ocks.org/mbostock</a></li>
+          <li><a target="_blank" href="http://bl.ocks.org/syntagmatic">bl.ocks.org/syntagmatic</a></li>
+          <li><a target="_blank" href="http://bl.ocks.org/curran">bl.ocks.org/curran</a></li>
+        </ul>
+      </p>
+    </section>
+    <section class="level2">
+      <h2>The DOM</h2>
+      <iframe style="height:600px" src="html-playground.html#hello-dom"></iframe>
+    </section>
+
+    <section class="level2">
+      
+      <h2>SVG</h2>
 
       <section>
-        <div id="title">
-          <h1>Tutoriel D3 Master 2 Sigma - 2015</h1>
-          <p>Tutoriel D3 Master 2 Sigma</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/ljegou">ljegou</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
-
-        <h1>
-<a id="d3sigma" class="anchor" href="#d3sigma" aria-hidden="true"><span class="octicon octicon-link"></span></a>d3sigma</h1>
-
-<p>Tutoriel D3 Master 2 Sigma</p>
+        <p>
+          <h4>&lt;rect&gt; Rectangle</h4>
+          MDN documentation: 
+          <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/rect">
+            &lt;rect&gt;
+          </a>
+        </p>
+        <iframe style="height:140px" src="html-playground.html#hello-svg-rect"></iframe>
       </section>
 
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
-  </body>
+      <section>
+        <p>
+          <h4>&lt;circle&gt; Circle</h4>
+          MDN documentation: 
+          <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/circle">
+            &lt;circle&gt;
+          </a>
+        </p>
+        <iframe style="height:140px" src="html-playground.html#hello-svg-circle"></iframe>
+      </section>
+
+      <section>
+        <p>
+          <h4>&lt;path&gt; Path</h4>
+          MDN documentation: 
+          <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/path">
+            &lt;path&gt;
+          </a>
+        </p>
+        <iframe style="height:140px" src="html-playground.html#hello-svg-path"></iframe>
+      </section>
+
+      <section>
+        <p>
+          <h4>&lt;text&gt; Text</h4>
+          MDN documentation: 
+          <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/text">
+            &lt;text&gt;
+          </a>
+        </p>
+        <iframe style="height:140px" src="html-playground.html#hello-svg-text"></iframe>
+      </section>
+
+      <section>
+        <p>
+          <h4>&lt;g&gt; Groups and transforms (translate, rotate, scale)</h4>
+          MDN documentation: 
+          <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/g">
+            &lt;g&gt;
+          </a>
+        </p>
+        <iframe style="height:140px" src="html-playground.html#hello-svg-g"></iframe>
+        <p>
+          <h4> Nested &lt;g&gt; Groups</h4>
+        </p>
+        <iframe style="height:320px" src="html-playground.html#hello-svg-g-recursve"></iframe>
+      </section>
+
+      <h3>SVG Styles</h3>
+
+      <section>
+        <p>
+          <h4>Fill</h4>
+        </p>
+        <iframe style="height:140px" src="html-playground.html#svg-styles-fill"></iframe>
+      </section>
+
+      <section>
+        <p>
+          <h4>Stroke</h4>
+        </p>
+        <iframe style="height:140px" src="html-playground.html#svg-styles-stroke"></iframe>
+      </section>
+
+      <section>
+        <p>
+          <h4>Getting fancy</h4>
+        </p>
+        <iframe style="height:140px" src="html-playground.html#svg-styles"></iframe>
+      </section>
+
+      <section>
+        <p>
+          <h4>A more complicated example</h4>
+        </p>
+        <iframe style="height:600px" src="html-playground.html#hello-svg"></iframe>
+      </section>
+    </section>
+
+    <section class="level2">
+      <h2>JavaScript</h2>
+
+      <section>
+        <h3>With D3</h3>
+        <p>
+          JavaScript lets us change the DOM tree we created with SVG.
+        </p>
+        <iframe style="height:600px" src="html-playground.html#hello-javascript"></iframe>
+      </section>
+
+      <section>
+        <h3>Chainable APIs</h3>
+        <p>
+          Two examples in pseudo code of a non-chainable and chainable API 
+        </p>
+        <iframe style="height:600px" src="html-playground.html#chainable-api"></iframe>
+      </section>
+
+      <section>
+        <h3>selector.style()</h3>
+        <p>
+          We can now change SVG styles programmably
+        </p>
+        <iframe style="height:250px" src="html-playground.html#selector-style"></iframe>
+      </section>
+
+      <section>
+        <h3>selector.attr()</h3>
+        <p>
+          Same for SVG attributes
+        </p>
+        <iframe style="height:250px" src="html-playground.html#selector-attr"></iframe>
+      </section>
+
+      <section>
+        <h3>accessors</h3>
+        <iframe style="height:300px" src="html-playground.html#selector-accessors"></iframe>
+      </section>
+
+      <section>
+        <h3>JavaScript functions refresher</h3>
+        <iframe style="height:300px" src="html-playground.html#javascript-functions-as-objects"></iframe>
+      </section>
+
+      <section>
+        <h3>Creating SVGs from scratch in JavaScript</h3>
+        <iframe style="height:600px" src="estuary.html#svg-from-javascript"></iframe>
+      </section>
+
+      <section>
+        <h3>selector.enter()</h3>
+        <p>
+          A new way of adding elements.
+        </p>
+        <p>
+          Documentation: <a target="_blank" href="https://github.com/mbostock/d3/wiki/Selections#enter">selector.enter()</a>
+        </p>
+        <iframe style="height:600px" src="estuary.html#selector-enter"></iframe>
+      </section>
+
+      <section>
+        <h3>Breaking down selector.enter()</h3>
+        <iframe style="height:600px" src="estuary.html#selector-enter-break-down"></iframe>
+
+      </section>
+
+      <section>
+        <h3>Transitions</h3>
+        <p>
+          Documentation: <a target="_blank" href="https://github.com/mbostock/d3/wiki/Transitions">transitions</a>
+        </p>
+        <iframe style="height:600px" src="estuary.html#transitions-intro"></iframe>
+      </section>
+
+      <section>
+        <h3>Chaining transitions</h3>
+        <iframe style="height:600px" src="estuary.html#transitions-chaining"></iframe>
+      </section>
+
+      <section>
+        <h2>data binding and transitions</h2>
+        <p>
+          Documentation: <a target="_blank" href="https://github.com/mbostock/d3/wiki/Arrays#d3_range">d3.range()</a>
+        </p>
+        <iframe style="height:600px" src="estuary.html#data-binding-and-transitions"></iframe>
+      </section>
+    </section>
+  </section>
+
+  <section class="toplevel">
+    <span class="session-title">
+      <h1>Lunch</h1> - <span class="session-time">12pm - 12:45pm</span>
+    </span>
+    <section>
+        <p>Time to eat!</p>
+    </section>
+  </section>
+  <section class="toplevel">
+    <span class="session-title">
+      <h1>Session 2</h1> - <span class="session-time">12:45pm - 2:15pm</span>
+    </span>
+    <section class="level2">
+      <h2>Data</h2>
+      <section>
+        <h3>Getting data into the browser</h3>
+        <p>
+          Assuming our server has a <a target="_blank" href="/data/setosa.csv">/data/setosa.csv</a> file.
+        </p>
+        <p>
+          Documentation: <a target="_blank" href="https://github.com/mbostock/d3/wiki/CSV">d3.csv()</a>, <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">JSON.stringify()</a>
+        </p>
+        <iframe style="height:300px" src="html-playground.html#getting-data-into-the-browser"></iframe>
+      </section>
+      <section>
+        <h3>Manipulating data</h3>
+        <p>
+          Documentation: <a target="_blank" href="https://github.com/mbostock/d3/wiki/Arrays#d3_nest">d3.nest()</a>
+        </p>
+        <iframe style="height:600px" src="html-playground.html#using-data-in-visualizations"></iframe>
+      </section>
+      <section>
+        <h3>Visualizing data using layouts</h3>
+        <p>
+          Documentation: <a target="_blank" href="https://github.com/mbostock/d3/wiki/Pie-Layout">d3.layout.pie()</a>,
+          <a target="_blank" href="https://github.com/mbostock/d3/wiki/SVG-Shapes#arc">d3.svg.arc()</a>
+        </p>
+        <iframe style="height:600px" src="estuary.html#visualizing-data-from-a-csv"></iframe>
+      </section>
+      <section>
+        <h3>Breaking down d3.layout.pie()</h3>
+        <textarea class="code-mirror js" style="width: 1024px;height: 100px">
+var people = [{name: 'Miles', score: 10}, {name: 'Shirley', score: 20}];
+var pieLayout = d3.layout.pie().value(function(d) { return d.score; })(people);
+console.log(JSON.stringify(pieLayout, null, 2));
+        </textarea>
+        <p>
+          The result
+        </p>
+        <textarea class="code-mirror js" style="width: 1024px;height: 400px">
+[
+  {
+    "data": {
+      "name": "Miles",
+      "score": 10
+    },
+    "value": 10,
+    "startAngle": 4.1887902047863905,
+    "endAngle": 6.283185307179586,
+    "padAngle": 0
+  },
+  {
+    "data": {
+      "name": "Shirley",
+      "score": 20
+    },
+    "value": 20,
+    "startAngle": 0,
+    "endAngle": 4.1887902047863905,
+    "padAngle": 0
+  }
+]
+        </textarea>
+      </section>
+      <section>
+        <h3>Breaking down d3.svg.arc()</h3>
+        <textarea class="code-mirror js" style="width: 1024px;height: 100px">
+// An `arc` creating function.
+var arc = d3.svg.arc().innerRadius(0).outerRadius(100)
+var path = arc(pieLayout[0]);
+console.log(path);
+        </textarea>
+        <p>
+          The result
+        </p>
+        <textarea class="code-mirror" style="width: 1024px; height: 100px">
+"M-86.60254037844385,50.000000000000036A100,100 0 0,1 -1.8369701987210297e-14,-100L0,0Z"
+        </textarea>
+        <p>
+"A shape generator, such as that returned by d3.svg.arc, is both an object and a function. That is: you can call the shape like any other function, and the shape has additional methods that change its behavior. Like other classes in D3, shapes follow the method chaining pattern where setter methods return the shape itself, allowing multiple setters to be invoked in a concise statement." - <a target="_blank" href="https://github.com/mbostock/d3/wiki/SVG-Shapes">D3 Documentation</a>
+        </p>
+    </section>
+    <section>
+      <h3>(Linear) scales</h3>
+      <p>
+        Documentation: <a target="_blank" href="https://github.com/mbostock/d3/wiki/Quantitative-Scales">d3.scales.linear()</a>
+      </p>
+      <iframe style="height:600px" src="estuary.html#scales-linear"></iframe>
+    </section>
+    <section>
+      <h3>Axis</h3>
+      <p>
+        Documentation: <a target="_blank" href="https://github.com/mbostock/d3/wiki/SVG-Axes#axis">d3.svg.axis()</a>
+      </p>
+      <iframe style="height:600px" src="estuary.html#simple-axis"></iframe>
+    </section>
+
+    <section>
+      <h3>The schedule for this workshop</h3>
+      <iframe style="height:600px" src="estuary.html#worksho-schedule"></iframe>
+    </section>
+
+    <section>
+      <h3>Creating a histogram</h3>
+      <p>
+        Documentation: <a target="_blank" href="https://github.com/mbostock/d3/wiki/Histogram-Layout">d3.layout.histogram()</a>
+      </p>
+      <iframe style="height:600px" src="estuary.html#simple-histogram"></iframe>
+    </section>
+
+    <section>
+      <h3>Scatterplot matrix</h3>
+      <p>
+        See the original by <a target="_blank" href="twitter.com/mbostock">Mike Bostock</a> on <a target="_blank" href="http://bl.ocks.org/mbostock/3213173">bl.ocks.org</a>
+      </p>
+      <iframe style="height:650px" src="html-playground.html#iris-scatterplot-matrix"></iframe>
+    </section>
+
+  </section>
+  </section>
+  <section>
+    <span class="session-title">
+      <h1>Break</h1> - <span class="session-time">2:15pm - 2:30pm</span>
+      <section>
+        <p>
+          Chillax
+        </p>
+      </section>
+    </span>
+  </section>
+  <section class="toplevel">
+    <span class="session-title">
+      <h1>Session 3</h1> - <span class="session-time">2:30pm - 4:00pm</span>
+    </span>
+    <section>
+      <p>
+        <h3>Using D3 locally with a python web server</h3>
+      </p>
+      <p>
+        Now that we know enough D3 to get by, let's setup a D3 project outside of this workshop. (If your computer doesn't already have python, you can download it from: <a target="_blank" href="https://www.python.org/downloads/"> here</a>.)
+      </p>
+      <p>
+        <b>python -m SimpleHTTPServer</b>
+      <p>
+      <p>
+        This will start up a local webserver that you can access at: <a target="_blank" href="http://localhost:8000/">http://localhost:8000/</a>. This your own little private website that only you can access.
+      </p>
+      <p>
+        Any scripts or data files you load will need to be relative to the directory your server is running from. If we ran our server from <b>~/Documents/projects/workshop</b> and we had a file called <b>setosa.csv</b> in it, we could load it by using: <b>d3.csv('/setosa.csv', ...);</b>.
+      </p>
+      <p>
+        The remaining workshop will be more open ended. Pick a data set below to try and visualize.
+        <ul>
+          <li><a target="_blank" href="https://github.com/fivethirtyeight/data">https://github.com/fivethirtyeight/data</a></li>
+          <li><a target="_blank" href="https://github.com/fivethirtyeight/data">https://github.com/curran/data</a></li>
+        </ul>
+        Here are a few blocks to use as inspiration.
+        <ul>
+          <li><a target="_blank" href="http://bl.ocks.org/mbostock/29cc3cc4078091fd2115">state grid</a></li>
+          <li><a target="_blank" href="http://bl.ocks.org/mbostock/9490313">Small Multiples II</a></li>
+          <li><a target="_blank" href="http://bl.ocks.org/mbostock/7586334">Parallel Coordinates</a></li>
+          <li><a target="_blank" href="http://bl.ocks.org/mbostock/6645441">Treemap Padding</a></li>
+          <li><a target="_blank" href="http://bl.ocks.org/mbostock/3885211">Stacked Area Chart</a></li>
+          <li><a target="_blank" href="http://bl.ocks.org/mbostock/3886394">Normalized Stacked Bar Chart</a></li>
+          <li><a target="_blank" href="http://bl.ocks.org/mbostock/3885304">Bar Chart</a></li>
+          <li><a target="_blank" href="http://bl.ocks.org/mbostock/3884914">Bivariate Area Chart</a></li>
+          <li><a target="_blank" href="http://bl.ocks.org/mbostock/3887051">Grouped Bar Chart</a></li>
+          <li><a target="_blank" href="http://bl.ocks.org/mbostock/3887118">Scatterplot</a></li>
+          <li><a target="_blank" href="http://bl.ocks.org/mbostock/3886208">Stacked Bar Chart</a></li>
+          <li><a target="_blank" href="http://bl.ocks.org/mbostock/3719724">Sortable Table with Bars</a></li>
+          <li><a target="_blank" href="http://bl.ocks.org/mbostock/3202354">Heatmap (2D Histogram, CSV)</a></li>
+          <li><a target="_blank" href="http://bl.ocks.org/mbostock/1846692">Automatic Text Sizing</a></li>
+          <li><a target="_blank" href="http://bl.ocks.org/mbostock/1584697">Sortable Bar Chart</a></li>
+          <li><a target="_blank" href="http://bl.ocks.org/mbostock/1389927">A Bar Chart</a></li>
+          <li><a target="_blank" href="http://bl.ocks.org/mbostock/1341021">Parallel Coordinates</a></li>
+          <li><a target="_blank" href="http://bl.ocks.org/mbostock/1046712">Chord Diagram</a></li>
+          <li><a target="_blank" href="http://bl.ocks.org/mbostock/1306365">Sunburst with Distortion</a></li>
+          <li><a target="_blank" href="http://bl.ocks.org/mbostock/582915">Streamgraph</a></li>
+        </ul>
+      </p>
+    </section>
+  </section>
+  <section>
+    <h2>Playground</h2>
+    <iframe style="height:600px" src="estuary.html#playground-init"></iframe>
+  </section>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-11200159-17', 'vicapow.github.io');
+    ga('send', 'pageview');
+  </script>
+  <script>
+
+d3.selectAll('.code-mirror').each(function() {
+  var dim = [this.clientWidth, this.clientHeight]
+  var js = d3.select(this).classed('js')
+  var cm = CodeMirror.fromTextArea(this, {
+    tabSize: 2,
+    mode: js ? 'javascript' : 'htmlmixed',
+    lineNumbers: true,
+    // theme: 'twilight',
+    lineWrapping: true,
+    readOnly: true,
+  })
+  cm.setSize.apply(cm, dim)
+})
+
+// add anchor links
+function anchorify(text) {
+  return text.replace(/ /, '-').toLowerCase()
+}
+
+var toc = []
+var sections = d3.selectAll(".toplevel").each(function() {
+  console.log("dis", this)
+  var dis = d3.select(this);
+  dis.selectAll("h1")
+  .attr("id", function(d) { 
+    console.log("this", this)
+    var id = anchorify(this.innerText)
+    toc.push({type: "h1", id: id, text: this.innerText})
+    return id
+  })
+  /*
+  dis.selectAll("h2")
+    .attr("id", function(d) { 
+      var id = anchorify(this.innerText)
+      toc.push({type: "h2", id: id, text: this.innerText})
+      return id
+    })
+  dis
+  .selectAll("h3")
+    .attr("id", function(d) { 
+      var id = anchorify(this.innerText)
+      toc.push({type: "h3", id: id, text: this.innerText})
+      return id
+    })
+*/
+  dis.selectAll("section.level2").each(function() {
+    var dis2 = d3.select(this)
+    dis2.selectAll("h2")
+    .attr("id", function(d) { 
+      var id = anchorify(this.innerText)
+      toc.push({type: "h2", id: id, text: this.innerText})
+      return id
+    })
+    dis2.selectAll("h3")
+    .attr("id", function(d) { 
+      var id = anchorify(this.innerText)
+      toc.push({type: "h3", id: id, text: this.innerText})
+      return id
+    })
+  })
+})
+console.log(toc)
+d3.select(".toc ul").selectAll("li")
+.data(toc)
+.enter()
+.append("li")
+.append("a")
+.attr({
+  href: function(d) { return "#" + d.id },
+  class: function(d) { return d.type}
+})
+.text(function(d) { return d.text})
+
+  </script>
+</body>
 </html>
