@@ -49,7 +49,7 @@ svg.selectAll("rect")
 
 //Ajout des libellés
 svg.selectAll("text")
-	.data(dataset)
+	.data(datatest)
 	.enter()
 	.append("text")
 	.text(function(d) {

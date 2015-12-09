@@ -54,3 +54,23 @@ svg.selectAll("circle")
 	.attr("font-family", "sans-serif")
 	.attr("font-size", "11px")
 	.attr("fill", "grey");
+	
+var xAxis = d3.svg.axis()
+	.scale(xScale)
+	.ticks(8) //Nombre approx. de barbules
+	.orient("bottom");
+
+var yAxis = d3.svg.axis()
+	.scale(yScale)
+	.orient("left")
+	.ticks(6);
+
+svg.append("g")
+	.attr("class", "axis") //Assigne la classe CSS "axis"
+	.attr("transform", "translate(0," + (haut - padding) + ")")
+	.call(xAxis);
+
+svg.append("g")
+	.attr("class", "axis")
+	.attr("transform", "translate(" + padding + ",0)")
+	.call(yAxis);	
