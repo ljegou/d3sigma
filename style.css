@@ -1,5 +1,5 @@
 p {
-    text-align: justify; color: #000;;
+    text-align: justify; color: #000;
 }
 
 li {
@@ -8,19 +8,19 @@ li {
 
 h1 {
     font-family: 'Roboto', sans-serif;
-    font-size: 24px; font-weight: bold;
+    font-size: 28px; font-weight: bold;
     text-align: center;
 }
 
 h2 {
     font-family: 'Roboto', sans-serif;
-    font-size: 18px; font-weight: bold;
+    font-size: 24px; font-weight: bold;
     text-align: left;
 }
 
 h3 {
     font-family: 'Roboto', sans-serif;
-    font-size: 14px; font-weight: bold;
+    font-size: 20px; font-weight: bold;
     text-align: left;
 }
 
