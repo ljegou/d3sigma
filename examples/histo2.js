@@ -35,9 +35,6 @@ var svg = d3.select("body")
 	.data(datatest)
 	.enter()
 	.append("rect")
-	.text(function(d) {
-		return d.temperature;
-	})
 	.attr("x", function(d, i) {
 		return i * lb; //Largeur de i * lb
 	})
