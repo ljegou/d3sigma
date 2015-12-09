@@ -234,14 +234,9 @@
 	  <p>Les données cartographiques proviennent d'un fichier JSON.</p>
       <iframe style="height:600px" src="html-playground.html#carto1"></iframe>
     </section>
+</section>
 
-  <br>
-  <section>
-    <h2>Bac à sable</h2>
-    <iframe style="height:600px" src="estuary.html#playground-init"></iframe>
-  </section>
-  <script>
-
+<script>
 d3.selectAll('.code-mirror').each(function() {
   var dim = [this.clientWidth, this.clientHeight]
   var js = d3.select(this).classed('js')
@@ -260,7 +255,6 @@ d3.selectAll('.code-mirror').each(function() {
 function anchorify(text) {
   return text.replace(/ /, '-').toLowerCase()
 }
-
-  </script>
+</script>
 </body>
 </html>

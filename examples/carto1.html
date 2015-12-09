@@ -41,12 +41,12 @@
 		.attr("height", haut);
 
 	svg.insert("path")
-		.datum(topojson.feature(dataset, dataset.objects.land))
+		.datum(topojson.feature(monde, monde.objects.land))
 		.attr("class", "land")
 		.attr("d", path);
 
 	svg.insert("path")
-		.datum(topojson.mesh(dataset, dataset.objects.countries, function(a, b) { return a !== b; }))
+		.datum(topojson.mesh(monde, monde.objects.countries, function(a, b) { return a !== b; }))
 		.attr("class", "boundary")
 		.attr("d", path);
 </script>
