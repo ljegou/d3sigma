@@ -8,14 +8,14 @@ li {
 
 h1 {
     font-family: 'Roboto', sans-serif;
-    font-size: 24px; font-weight: 800;
+    font-size: 24px; font-weight: bold;
     text-align: center;
 }
 
 h2 {
     font-family: 'Roboto', sans-serif;
-    font-size: 18px; font-weight: 800;
-    text-align: center;
+    font-size: 18px; font-weight: bold;
+    text-align: left;
 }
 
 * {
@@ -42,7 +42,6 @@ body > section {
 
 ul {
   list-style: none;
-
 }
 
 a.h1 {
