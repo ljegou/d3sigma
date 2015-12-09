@@ -18,9 +18,8 @@
 </style>
 <script src="/scripts/d3.v3.js"></script>
 <script src="/scripts/topojson.v1.min.js"></script>
+<script src="/data/world-50m.json"></script>
 <script type="text/javascript">
-	d3.json("data/world-50m.json", draw);
-	function draw(dataset) {
 		//Largeur et hauteur du graphe
 		var larg = 600;
 		var haut = 600;
@@ -50,5 +49,4 @@
 		.datum(topojson.mesh(dataset, dataset.objects.countries, function(a, b) { return a !== b; }))
 		.attr("class", "boundary")
 		.attr("d", path);
-	}
 </script>
