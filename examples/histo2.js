@@ -18,7 +18,7 @@ var datatest = [
 ];
 var nbb = datatest.length; //Nb de barres
 var lb = ((larg - nbb) / nbb); //Largeur barre
-var ch = (haut / d3.max(dataset, function (d) {
+var ch = (haut / d3.max(datatest, function (d) {
 	return d.temperature //Coef. hauteur.
 }));
 
