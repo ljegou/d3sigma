@@ -28,15 +28,9 @@ var svg = d3.select("body")
 	.append("svg")
 	.attr("width", larg)
 	.attr("height", haut);
-	var barPadding = 2; //Padding des barres
-	var nbb = dataset.length; //Nb de barres
-	var lb = ((larg - nbb) / nbb); //Largeur barre
-	var ch = (haut / d3.max(dataset, function (d) {
-		return d.temperature //Coef. hauteur.
-	}));
 
-	//Dessin des barres
-	svg.selectAll("rect")
+//Dessin des barres
+svg.selectAll("rect")
 	.data(datatest)
 	.enter()
 	.append("rect")
@@ -53,9 +47,9 @@ var svg = d3.select("body")
 	.attr("fill", function(d) {
 		return "rgb(0, 0, " + (d.temperature * 10) + ")";
 	});
-	
-	//Ajout des libellés
-	svg.selectAll("text")
+
+//Ajout des libellés
+svg.selectAll("text")
 	.data(dataset)
 	.enter()
 	.append("text")
