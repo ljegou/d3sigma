@@ -1,6 +1,5 @@
 //Largeur et hauteur du graphe
-var larg = 500;
-var haut = 100;
+var haut = 400;
 var barPadding = 1; //Padding des barres
 
 var datatest = [
@@ -29,13 +28,13 @@ var svg = d3.select("body")
 	.enter()
 	.append("rect")
 	.attr("x", function(d, i) {
-		return i * (20 + barPadding); //Largeur de 20 + 1 de padding
+		return i * (40 + barPadding); //Largeur de 20 + 1 de padding
 	})
 	.attr("y", function(d) {
-		return haut - (d.temperature * 2); // Hauteur - temperature
+		return haut - (d.temperature * 6); // Hauteur - temperature
 	})
-	.attr("width", 20)
+	.attr("width", 40)
 	.attr("height", function(d) {
-		return (d.temperature * 2); // Temperature de la donnée
+		return (d.temperature * 6); // Temperature de la donnée
 	})
 	.attr("fill", "teal");
