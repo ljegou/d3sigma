@@ -1,6 +1,6 @@
 //Largeur et hauteur du graphe
 var larg = 500;
-var haut = 100;
+var haut = 400;
 var padding = 20;
 
 var datatest = [
