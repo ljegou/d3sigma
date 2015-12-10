@@ -1,4 +1,5 @@
 //Largeur et hauteur du graphe
+var larg = 600;
 var haut = 400;
 var barPadding = 1; //Padding des barres
 
