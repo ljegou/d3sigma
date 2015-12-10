@@ -3,20 +3,20 @@ p {
 }
 
 h1 {
-    font-family: 'Roboto', sans-serif;
-    font-size: 40px; font-weight: bolder;
+    font-family: 'Rammetto One', cursive;
+    font-size: 40px;
     text-align: center;
 }
 
 h2 {
-    font-family: 'Roboto', sans-serif;
-    font-size: 24px; font-weight: bolder;
+    font-family: 'Rammetto One', cursive;
+    font-size: 24px;
     text-align: left;
 }
 
 h3 {
-    font-family: 'Roboto', sans-serif;
-    font-size: 20px; font-weight: bolder;
+    font-family: 'Rammetto One', cursive;
+    font-size: 20px;
     text-align: left;
 }
 
