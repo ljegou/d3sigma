@@ -1,6 +1,6 @@
 //Largeur et hauteur du graphe
-var larg = 500;
-var haut = 100;
+var larg = 600;
+var haut = 400;
 var barPadding = 2; //Padding des barres
 var datatest = [
     {"mois":"janvier", "temperature":5},
