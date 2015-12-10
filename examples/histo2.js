@@ -1,5 +1,5 @@
 //Largeur et hauteur du graphe
-var larg = 600;
+var larg = 480;
 var haut = 400;
 var barPadding = 2; //Padding des barres
 var datatest = [
