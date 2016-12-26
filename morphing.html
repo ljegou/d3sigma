@@ -1,48 +1,8 @@
 <!DOCTYPE html>
-<html>
-<meta charset="utf-8">
-<link rel="stylesheet" href="node_modules/codemirror/lib/codemirror.css">
-<link rel="stylesheet" href="node_modules/codemirror/theme/twilight.css">
-<link rel="stylesheet" href="node_modules/codemirror-inlet/inlet.css" type="text/css" media="screen"  title="no title" charset="utf-8">
-<style>
-body {
-  overflow: hidden;
-}
-
-iframe {
-  background-color: #ecf0f1;
-  border: none;
-  overflow: hidden;
-}
-.html-editor-container {
-  font-size: 14px;
-}
-
-</style>
-<body>
-</body>
-<script src="scripts/d3.v3.js"></script>
-<script src="scripts/debounce.js"></script>
-<script src="scripts/template-modifier.js"></script>
-<script src="node_modules/codemirror/lib/codemirror.js"></script>
-<script src="node_modules/codemirror/mode/javascript/javascript.js"></script>
-<script src="node_modules/codemirror/mode/xml/xml.js"></script>
-<script src="node_modules/codemirror/mode/css/css.js"></script>
-<script src="node_modules/codemirror/mode/htmlmixed/htmlmixed.js"></script>
-<script src="node_modules/codemirror-inlet/inlet.js"></script>
-<script>
-'use strict'
-
-var width = window.innerWidth, height = window.innerHeight
-
-var slug = window.location.hash.slice(1)
-
-var defaultContent = '<!DOCTYPE html>
 <head>
   <script src="/scripts/d3.v3.js" charset="utf-8"></script>
 </head>
 <body>
-  <p>A</p>
   <svg width="510" height="600">
   </svg>
   <script type="text/javascript">
@@ -73,81 +33,4 @@ var defaultContent = '<!DOCTYPE html>
   }
   </script>
 </body>
-</html>';
-
-if (slug)
-  d3.text('./examples/' + slug + '.html', function(err, res) {
-    gotContent(err ? defaultContent : res)
-  })
-else gotContent(defaultContent)
-
-function gotContent(content) {
-
-  var body = d3.select('body')
-
-  var main = body.append('div')
-    .style({
-      width: width + 'px',
-      height: height + 'px',
-      position: 'absolute',
-      top: '0px',
-      left: '0px',
-    })
-
-  var iframe = main.append('iframe').classed('stage', true)
-    .style({
-      position: 'absolute',
-      top: '0',
-      left: width / 2 + 'px',
-      width: width / 2 + 'px',
-      height: height + 'px'
-    })
-
-  var htmlEditorContainer = main.append('div')
-    .classed('html-editor-container', true)
-    .style({
-      width: width / 2 + 'px',
-      height: height + 'px',
-      position: 'absolute',
-      top: '0',
-      left: '0',
-      border: 'none',
-    })
-
-  var htmlCM = CodeMirror(htmlEditorContainer.node(), {
-    tabSize: 2,
-    value: content,
-    mode:  'htmlmixed',
-    lineNumbers: true,
-    theme: 'twilight',
-    lineWrapping: true,
-  })
-
-  htmlCM.setSize(width / 2, height)
-
-  htmlCM.on('change', function() {
-    updateHTML()
-  })
-  Inlet(htmlCM)
-
-  var blobUrl
-  var updateHTML = debounce(function updateHTML() {
-      var template = htmlCM.getValue()
-      d3.xhr('./examples/' + slug + '.html')
-        .header('Content-Type', 'text/html')
-        .post(template, function(err, res) {
-          if(err) throw err
-        })
-      template = templateModifier(template)
-      //remove the last instance
-      window.URL.revokeObjectURL(blobUrl)
-      var blob = new Blob([template], {type: 'text/html'})
-      blobUrl = URL.createObjectURL(blob)
-      iframe.node().src = blobUrl
-  }, 100)
-
-  updateHTML()
-}
-
-</script>
 </html>
