@@ -1,8 +1,12 @@
 <body>
-	<svg width="510" height="600">
-	</svg>
+	&nbsp;
+</body>
+	<script src="/scripts/d3.v3.js" charset="utf-8"></script>
 	<script type="text/javascript">
-	var svg = d3.select('svg');
+	 var svg = d3.select("body")
+		.append("svg")
+		.attr("width", 600)
+		.attr("height", 600);
 
 	var pstyle = {'fill':'none','fill-rule':'evenodd','stroke':'#AA0000','stroke-width':'1px','stroke-linecap':'butt','stroke-linejoin':'miter','stroke-opacity':1};
 
@@ -46,6 +50,5 @@
         .attr("stop-color", "#aaa")
         .each("end", loop);
 	}
-
+		
 	</script>
-</body>
