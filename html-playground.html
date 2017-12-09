@@ -67,7 +67,7 @@ function gotContent(content) {
       height: height + 'px'
     })
 
-  var htmlEditorContainer = main.append('div')
+  var htmlEditorContainer = body.append('div').append('div')
     .classed('html-editor-container', true)
     .style({
       width: width / 2 + 'px',
