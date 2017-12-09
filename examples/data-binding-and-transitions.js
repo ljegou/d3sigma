@@ -2,7 +2,6 @@ var width = 512;
 var height = 600;
 var svg = d3.select('body').append('svg')
   .attrs({width: width + 'px', height: height + 'px'});
-  var color = d3.scaleOrdinal(d3.schemecategory10);
 
 svg.selectAll('circle').data(d3.range(100))
   .enter()
@@ -17,8 +16,7 @@ svg.selectAll('circle').data(d3.range(100))
       return 'translate(' + pos + ')'
     },
   }).styles({
-    fill: function(d, i) { return color(i) },
-    'fill-opacity': 0.0,
+    fill: function(d, i) { return rgba(Math.random()*255,Math.random()*255,Math.random()*255,1); },
   })
   .transition()
   .duration(1000)

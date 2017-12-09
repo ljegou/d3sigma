@@ -9,13 +9,13 @@ var g = svg.append('g')
 
 g.append('circle')
   .attrs({r: 35, cy: 0})
-  .style({fill: '#e74c3c'});
+  .styles({fill: '#e74c3c'});
 
 g.append('circle')
   .attrs({r: 35, cy: 70})
-  .style({fill: '#f1c40f'});
+  .styles({fill: '#f1c40f'});
 
 g.append('circle')
   .attrs({r: 35, cy: 140})
-  .style({fill: '#2ecc71'});
+  .styles({fill: '#2ecc71'});
 
