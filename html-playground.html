@@ -58,7 +58,7 @@ function gotContent(content) {
       left: '0px',
     })
 
-  var iframe = main.append('iframe').classed('stage', true)
+  var iframe = body.append('div').append('iframe').classed('stage', true)
     .style({
       position: 'absolute',
       top: '0',
