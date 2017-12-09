@@ -23,6 +23,7 @@ iframe {
 </body>
 <script src="scripts/d3.v4.min.js"></script>
 <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+<script src="https://d3js.org/d3-request.v1.min.js"></script>
 <script src="scripts/debounce.js"></script>
 <script src="scripts/template-modifier.js"></script>
 <script src="node_modules/codemirror/lib/codemirror.js"></script>
@@ -96,7 +97,7 @@ function gotContent(content) {
   var blobUrl;
   var updateHTML = debounce(function updateHTML() {
       var template = htmlCM.getValue();
-      d3.xhr('./examples/' + slug + '.html')
+      d3.request('./examples/' + slug + '.html')
         .header('Content-Type', 'text/html')
         .get(template, function(err, res) {
 			if(err) throw err
