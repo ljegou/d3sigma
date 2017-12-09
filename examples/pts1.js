@@ -8,15 +8,15 @@ var datatest = [
 [410, 12, 3], [475, 44, 2], [25, 67, 4], [85, 21, 5], [220, 88, 2]
 ]
 ;
-var xScale = d3.scale.linear()
+var xScale = d3.scaleLinear()
 	.domain([0, d3.max(datatest, function(d) { return d[0]; })])
 	.range([padding, larg - padding * 2]);
 
-var yScale = d3.scale.linear()
+var yScale = d3.scaleLinear()
 	.domain([0, d3.max(datatest, function(d) { return d[1]; })])
 	.range([haut - padding , padding]);
 
-var rScale = d3.scale.linear()
+var rScale = d3.scaleLinear()
 	.domain([0, d3.max(datatest, function(d) { return d[2]; })])
 	.range([1, 10]);
 
