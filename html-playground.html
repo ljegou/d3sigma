@@ -49,7 +49,7 @@ function gotContent(content) {
 
   var body = d3.select('body')
 
-  var main = body.append('div')
+  var leMain = body.append('div')
     .style({
       width: width + 'px',
       height: height + 'px',
@@ -58,7 +58,7 @@ function gotContent(content) {
       left: '0px',
     })
 
-  var iframe = main.append('iframe').classed('stage', true)
+  var iframe = leMain.append('iframe').classed('stage', true)
     .style({
       position: 'absolute',
       top: '0',
@@ -67,7 +67,7 @@ function gotContent(content) {
       height: height + 'px'
     })
 
-  var htmlEditorContainer = main.append('div')
+  var htmlEditorContainer = leMain.append('div')
     .classed('html-editor-container', true)
     .style({
       width: width / 2 + 'px',
