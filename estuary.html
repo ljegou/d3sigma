@@ -249,8 +249,8 @@ function gotContent(content) {
       //remove the last instance
 		  window.URL.revokeObjectURL(blobUrl);
 		  var blob = new Blob([template], {type: 'text/html'});
-		  blobUrl = URL.createObjectURL(blob):
-		  iframe.node().src = blobUrl:
+		  blobUrl = URL.createObjectURL(blob);
+		  iframe.node().src = blobUrl;
   }, 100)
 
   main.append('button').classed('run-btn', true).text('rerun')
