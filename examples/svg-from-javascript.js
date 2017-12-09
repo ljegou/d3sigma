@@ -1,7 +1,8 @@
 var width = 510;
 var height = 600;
-var svg = d3.select('body').append('svg')
-  .attr({width: width, height: height});
+var svg = d3.select('body')
+  .append('svg')
+  .attrs({width: width, height: height});
 
 var g = svg.append('g')
   .attr('transform', 'translate(250, 65)');
