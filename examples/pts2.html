@@ -76,14 +76,12 @@ svg.selectAll("circle")
 	.attr("font-size", "11px")
 	.attr("fill", "grey");
 	
-var xAxis = d3.svg.axis()
+var xAxis = d3.axisBottom()
 	.scale(xScale)
-	.ticks(8) //Nombre approx. de barbules
-	.orient("bottom");
+	.ticks(8); //Nombre approx. de barbules
 
-var yAxis = d3.svg.axis()
+var yAxis = d3.axisLeft()
 	.scale(yScale)
-	.orient("left")
 	.ticks(6);
 
 svg.append("g")
