@@ -58,7 +58,7 @@ function gotContent(content) {
       left: '0px',
     })
 
-  var iframe = body.append('div').append('iframe').classed('stage', true)
+  var iframe = main.append('iframe').classed('stage', true)
     .style({
       position: 'absolute',
       top: '0',
@@ -67,7 +67,7 @@ function gotContent(content) {
       height: height + 'px'
     })
 
-  var htmlEditorContainer = body.append('div').append('div')
+  var htmlEditorContainer = main.append('div')
     .classed('html-editor-container', true)
     .style({
       width: width / 2 + 'px',
