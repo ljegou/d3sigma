@@ -54,7 +54,6 @@ iframe.stage {
 <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
 <script src="https://d3js.org/d3-request.v1.min.js"></script>
 <script src="scripts/topojson.v1.min.js"></script>
-<script src="scripts/d3.selection.dispatcher.js"></script>
 <script src="scripts/debounce.js"></script>
 <script src="scripts/template-modifier.js"></script>
 <script src="node_modules/codemirror/lib/codemirror.js"></script>
@@ -165,8 +164,7 @@ function gotContent(content) {
   // Request the script src files.
   var gotAllScripts = false
   var sandboxScripts = [
-    {url: 'scripts/d3.v4.min.js', src: null},
-    {url: 'https://d3js.org/d3-dispatch.v1.min.js', src: null}
+	  {url: 'scripts/d3.v4.min.js', src: null}
   ]
   ;(function() {
     var toGoCount = sandboxScripts.length
@@ -183,11 +181,14 @@ function gotContent(content) {
     }
   })()
 
-  window.iframeInit = function iframeInit() {
+  /*window.iframeInit = function iframeInit() {
     iframe.node().contentWindow.d3SelectionDispatcher
       .on('afterSelection', iframeWasUpdated)
     iframeWasUpdated()
-  }
+  }*/
+
+   iframe.node().contentWindow
+      .on('afterSelection', iframeWasUpdated);
 
   window.iframeError = function iframeError(message) {
     jsEditorError.text(message)
