@@ -187,7 +187,9 @@ function gotContent(content) {
     iframeWasUpdated()
   }*/
   
-  iframe.on('afterSelection', iframeWasUpdated);
+  window.iframeInit = function iframeInit() {
+	  iframe.on('afterSelection', iframeWasUpdated);
+  };
 
   window.iframeError = function iframeError(message) {
     jsEditorError.text(message)
