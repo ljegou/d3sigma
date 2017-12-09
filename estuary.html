@@ -50,7 +50,9 @@ iframe.stage {
 </style>
 <body>
 </body>
-<script id="d3-script-tag" src="scripts/d3.v3.js"></script>
+<script id="d3-script-tag" src="scripts/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+<script src="https://d3js.org/d3-request.v1.min.js"></script>
 <script src="scripts/topojson.v1.min.js"></script>
 <script src="scripts/d3.selection.dispatcher.js"></script>
 <script src="scripts/debounce.js"></script>
@@ -88,7 +90,7 @@ function gotContent(content) {
   var body = d3.select('body')
 
   var main = body.append('div')
-    .style({
+    .styles({
       width: width + 'px',
       height: height + 'px',
       position: 'absolute',
@@ -97,7 +99,7 @@ function gotContent(content) {
     })
 
   var iframe = main.append('iframe').classed('stage', true)
-    .style({
+    .styles({
       position: 'absolute',
       top: '0px',
       right: '0px',
@@ -106,7 +108,7 @@ function gotContent(content) {
     })
 
   var jsEditorContainer = main.append('div').classed('js-editor-container', true)
-    .style({
+    .styles({
       position: 'absolute',
       width: width / 2 + 'px',
       height: height / 2 + 'px',
@@ -132,7 +134,7 @@ function gotContent(content) {
   Inlet(jsCM);
 
   var htmlEditorContainer = main.append('div').classed('html-editor-container', true)
-    .style({
+    .styles({
       position: 'absolute',
       width: width / 2 + 'px',
       height: height / 2 + 'px',
@@ -238,7 +240,7 @@ function gotContent(content) {
       + '</html>'
 
       if (slug)
-        d3.xhr('./examples/' + slug + '.js')
+        d3.request('./examples/' + slug + '.js')
           .header('Content-Type', 'text/javascript')
           .get(originalCode, function(err, res) {
             if(err) throw err
@@ -251,14 +253,14 @@ function gotContent(content) {
   }, 100)
 
   main.append('button').classed('run-btn', true).text('rerun')
-    .style({
+    .styles({
       right: width / 2 + 'px',
       bottom: height / 2 + 'px',
     })
     .on('click', runCode)
 
   var jsEditorError = main.append('div').classed('js-editor-error', true)
-    .style({
+    .styles({
       bottom: height / 2 + 10 + 'px',
       left: 40 + 'px',
       width: width / 2 - 80 + 'px',
