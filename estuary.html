@@ -187,7 +187,7 @@ function gotContent(content) {
     iframeWasUpdated()
   }*/
 
-   iframe.node().contentWindow
+   iframe.node()
       .on('afterSelection', iframeWasUpdated);
 
   window.iframeError = function iframeError(message) {
@@ -210,7 +210,7 @@ function gotContent(content) {
     htmlCM.setValue(html)
   }
 
-  var blobUrl
+  var blobUrl;
   var runCode = debounce(function runCode() {
       if (!gotAllScripts) return
       var originalCode = jsCM.getValue()
@@ -245,12 +245,12 @@ function gotContent(content) {
           .header('Content-Type', 'text/javascript')
           .get(originalCode, function(err, res) {
             if(err) throw err
-          })
+          });
       //remove the last instance
-      window.URL.revokeObjectURL(blobUrl)
-      var blob = new Blob([template], {type: 'text/html'})
-      blobUrl = URL.createObjectURL(blob)
-      iframe.node().src = blobUrl
+		  window.URL.revokeObjectURL(blobUrl);
+		  var blob = new Blob([template], {type: 'text/html'});
+		  blobUrl = URL.createObjectURL(blob):
+		  iframe.node().src = blobUrl:
   }, 100)
 
   main.append('button').classed('run-btn', true).text('rerun')
@@ -258,7 +258,7 @@ function gotContent(content) {
       right: width / 2 + 'px',
       bottom: height / 2 + 'px',
     })
-    .on('click', runCode)
+    .on('click', runCode);
 
   var jsEditorError = main.append('div').classed('js-editor-error', true)
     .styles({
