@@ -7,7 +7,7 @@ svg.selectAll('circle').data(d3.range(100))
   .enter()
   .append('circle')
   .attrs({
-    r: function() { return Math.random() * 40 + 40 },
+    r: function() { return Math.random() * 40 + 2 },
     transform: function() {
       var pos = [
         width * Math.random(),
@@ -16,7 +16,7 @@ svg.selectAll('circle').data(d3.range(100))
       return 'translate(' + pos + ')'
     },
   }).styles({
-    fill: function(d, i) { return rgba(Math.random()*255,Math.random()*255,Math.random()*255,1); },
+    fill: function(d, i) { return '#' + Math.floor(Math.random() * 16777215).toString(16); },
   })
   .transition()
   .duration(1000)
