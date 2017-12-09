@@ -47,17 +47,17 @@ else gotContent(defaultContent);
 
 function gotContent(content) {
 
-  var leMain = d3.select("body").insert("div")
-    .style({
+	var leMain = d3.select("body").insert("div")
+	.styles({
       width: width + 'px',
       height: height + 'px',
       position: 'absolute',
       top: '0px',
-      left: '0px',
+      left: '0px'
     });
 
-  var iframe = leMain.insert("iframe").classed('stage', true)
-    .style({
+	var iframe = leMain.insert("iframe").classed('stage', true)
+    .styles({
       position: 'absolute',
       top: '0',
       left: width / 2 + 'px',
@@ -67,7 +67,7 @@ function gotContent(content) {
 
   var htmlEditorContainer = leMain.append('div')
     .classed('html-editor-container', true)
-    .style({
+    .styles({
       width: width / 2 + 'px',
       height: height + 'px',
       position: 'absolute',
