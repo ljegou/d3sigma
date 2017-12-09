@@ -47,16 +47,14 @@ else gotContent(defaultContent)
 
 function gotContent(content) {
 
-  var body = d3.select('body')
-
-  var leMain = body.append('div')
+  var leMain = d3.select('body').append('div')
     .style({
       width: width + 'px',
       height: height + 'px',
       position: 'absolute',
       top: '0px',
       left: '0px',
-    })
+    });
 
   var iframe = leMain.append('iframe').classed('stage', true)
     .style({
@@ -65,7 +63,7 @@ function gotContent(content) {
       left: width / 2 + 'px',
       width: width / 2 + 'px',
       height: height + 'px'
-    })
+    });
 
   var htmlEditorContainer = leMain.append('div')
     .classed('html-editor-container', true)
@@ -76,7 +74,7 @@ function gotContent(content) {
       top: '0',
       left: '0',
       border: 'none',
-    })
+    });
 
   var htmlCM = CodeMirror(htmlEditorContainer.node(), {
     tabSize: 2,
@@ -85,32 +83,32 @@ function gotContent(content) {
     lineNumbers: true,
     theme: 'twilight',
     lineWrapping: true,
-  })
+  });
 
   htmlCM.setSize(width / 2, height)
 
   htmlCM.on('change', function() {
     updateHTML()
-  })
-  Inlet(htmlCM)
+  });
+  Inlet(htmlCM);
 
-  var blobUrl
+  var blobUrl;
   var updateHTML = debounce(function updateHTML() {
-      var template = htmlCM.getValue()
+      var template = htmlCM.getValue();
       d3.xhr('./examples/' + slug + '.html')
         .header('Content-Type', 'text/html')
         .get(template, function(err, res) {
 			if(err) throw err
-        })
-      template = templateModifier(template)
+        });
+		template = templateModifier(template);
       //remove the last instance
-      window.URL.revokeObjectURL(blobUrl)
-      var blob = new Blob([template], {type: 'text/html'})
-      blobUrl = URL.createObjectURL(blob)
-      iframe.node().src = blobUrl
+		window.URL.revokeObjectURL(blobUrl);
+		var blob = new Blob([template], {type: 'text/html'});
+		blobUrl = URL.createObjectURL(blob);
+		iframe.node().src = blobUrl;
   }, 100)
 
-  updateHTML()
+  updateHTML();
 }
 
 </script>
