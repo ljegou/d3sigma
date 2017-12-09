@@ -1,5 +1,5 @@
 var svg = d3.select('body').append('svg')
-  .attr({width: 510, height: 600});
+  .attrs({width: 510, height: 600});
 
 var g = svg.append('g')
   .attr('transform', 'translate(250, 65)');
@@ -13,7 +13,7 @@ selector = selector.data(colors);
 
 // selector of size 3; 3 datum, 3 <circle> tags.
 selector = selector.enter().append('circle')
-    .attr({
+    .attrs({
       r: 35,
       cy: function(d, i) { return i * 70; },
     })

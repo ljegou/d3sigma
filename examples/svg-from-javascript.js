@@ -8,14 +8,14 @@ var g = svg.append('g')
   .attr('transform', 'translate(250, 65)');
 
 g.append('circle')
-  .attr({r: 35, cy: 0})
+  .attrs({r: 35, cy: 0})
   .style({fill: '#e74c3c'});
 
 g.append('circle')
-  .attr({r: 35, cy: 70})
+  .attrs({r: 35, cy: 70})
   .style({fill: '#f1c40f'});
 
 g.append('circle')
-  .attr({r: 35, cy: 140})
+  .attrs({r: 35, cy: 140})
   .style({fill: '#2ecc71'});
 

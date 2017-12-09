@@ -1,13 +1,13 @@
 var width = 512;
 var height = 600;
 var svg = d3.select('body').append('svg')
-  .attr({width: width + 'px', height: height + 'px'});
+  .attrs({width: width + 'px', height: height + 'px'});
 var color = d3.scale.category10()
 
 svg.selectAll('circle').data(d3.range(100))
   .enter()
   .append('circle')
-  .attr({
+  .attrs({
     r: function() { return Math.random() * 40 + 40 },
     transform: function() {
       var pos = [
@@ -16,14 +16,14 @@ svg.selectAll('circle').data(d3.range(100))
       ]
       return 'translate(' + pos + ')'
     },
-  }).style({
+  }).styles({
     fill: function(d, i) { return color(i) },
     'fill-opacity': 0.0,
   })
   .transition()
   .duration(1000)
   .ease('cubic-out')
-  .attr({
+  .attrs({
     r: function() { return Math.random() * 10 },
     transform: function() {
       var pos = [
