@@ -4,40 +4,38 @@
 	<script src="https://ljegou.github.io/d3sigma/scripts/d3.v4.min.js"></script>
 	<script src="https://ljegou.github.io/d3sigma/scripts/topojson.min.js"></script>
 	<script type="text/javascript">
-	var dataset;
 
-	d3.json("https://ljegou.github.io/d3sigma/data/frdept_hotels.json", function(error, data) {
-		dataset = data;
+	d3.json("https://ljegou.github.io/d3sigma/data/frdept_hotels.json", function(error, dataset) {
+		dessiner(dataset);
 		if (error) throw error;
 	});
 	
-	//Largeur et hauteur du graphe
-	var larg = 600;
-	var haut = 600;
-
-	var projection1 = d3.geoOrthographic()
-	    .scale(280) //Échelle
-	    .translate([larg / 2, haut / 2]) //Dimensions
-		.rotate([-4, -48]) //France au centre
-	    .clipAngle(90)
-	    .precision(.1);
-
-	var projection = d3.geo.mercator()
-			.scale(500)
-			.translate([larg / 2, haut / 2]);
-
-	var path = d3.geo.path()
-	    .projection(projection);
+	function dessiner(dataset) {
 	
-	//Création de l'élément SVG
-	var svg = d3.select("body")
-		.append("svg")
-		.attr("width", larg)
-		.attr("height", haut);
+		//Largeur et hauteur du graphe
+		var larg = 600;
+		var haut = 600;
 
-	svg.append("path")
-	    .datum(topojson.feature(dataset, dataset.objects.departements))
-	    .attr("class", "land")
-	    .attr("d", path);
+		var projection1 = d3.geoOrthographic()
+		    .scale(280) //Échelle
+		    .translate([larg / 2, haut / 2]) //Dimensions
+			.rotate([-4, -48]) //France au centre
+		    .clipAngle(90)
+		    .precision(.1);
+
+		var path = d3.geo.path()
+		    .projection(projection);
+	
+		//Création de l'élément SVG
+		var svg = d3.select("body")
+			.append("svg")
+			.attr("width", larg)
+			.attr("height", haut);
+
+		svg.append("path")
+		    .datum(topojson.feature(dataset, dataset.objects.departements))
+		    .attr("class", "land")
+		    .attr("d", path);
+	}
 	</script>
 </html>
