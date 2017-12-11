@@ -1,47 +1,36 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Carte</title>
+<body>
+	&nbsp;
+</body>
 	<script src="https://ljegou.github.io/d3sigma/scripts/d3.v4.min.js"></script>
 	<script src="https://ljegou.github.io/d3sigma/scripts/topojson.min.js"></script>
 	<script type="text/javascript">
-	function draw(dataset) {
-		//Largeur et hauteur du graphe
-		var larg = 600;
-		var haut = 600;
+	//Largeur et hauteur du graphe
+	var larg = 600;
+	var haut = 600;
 
-		var projection1 = d3.geo.orthographic()
-		    .scale(280) //Échelle
-		    .translate([larg / 2, haut / 2]) //Dimensions
-			.rotate([-4, -48]) //France au centre
-		    .clipAngle(90)
-		    .precision(.1);
+	var projection1 = d3.geo.orthographic()
+	    .scale(280) //Échelle
+	    .translate([larg / 2, haut / 2]) //Dimensions
+		.rotate([-4, -48]) //France au centre
+	    .clipAngle(90)
+	    .precision(.1);
 
-		var projection = d3.geo.mercator()
-    			.scale(500)
-    			.translate([larg / 2, haut / 2]);
+	var projection = d3.geo.mercator()
+			.scale(500)
+			.translate([larg / 2, haut / 2]);
 
-		var path = d3.geo.path()
-		    .projection(projection);
-		
-		//Création de l'élément SVG
-		var svg = d3.select("body")
-			.append("svg")
-			.attr("width", larg)
-			.attr("height", haut);
+	var path = d3.geo.path()
+	    .projection(projection);
+	
+	//Création de l'élément SVG
+	var svg = d3.select("body")
+		.append("svg")
+		.attr("width", larg)
+		.attr("height", haut);
 
-		svg.append("path")
-		    .datum(topojson.feature(dataset, dataset.objects.departements))
-		    .attr("class", "land")
-		    .attr("d", path);
-
-	}
+	svg.append("path")
+	    .datum(topojson.feature(dataset, dataset.objects.departements))
+	    .attr("class", "land")
+	    .attr("d", path);
 	</script>
-</head>
-<body>
-	<script type="text/javascript">
-		d3.json("data/depts.json", draw);
-	</script>
-</body>
 </html>
