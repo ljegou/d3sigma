@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Carte</title>
+<body>
+	&nbsp;
+</body>
 	<style>
 	body {
 	  background: #fcfcfa;
@@ -23,10 +21,16 @@
 	<script src="https://ljegou.github.io/d3sigma/scripts/d3.v4.min.js"></script>
 	<script src="https://ljegou.github.io/d3sigma/scripts/topojson.min.js"></script>
 	<script type="text/javascript">
-	function draw(dataset) {
-		//Largeur et hauteur du graphe
-		var larg = 600;
-		var haut = 600;
+	var dataset;
+
+	d3.json("data/frdept_hotels.json", function(error, data) {
+		dataset = data;
+		if (error) throw error;
+	});
+
+	//Largeur et hauteur du graphe
+	var larg = 600;
+	var haut = 600;
 
 	//Projection conique équivalente d'Albers (surfaces)
 	var projectionEA = d3.geoAlbers()
@@ -36,55 +40,42 @@
 		.scale(2800)
 		.translate([larg / 2 - 140, haut / 2 - 120])
 		.precision(.1);
-					
-		var path = d3.geoPath().projection(projectionEA);
 	
-		//Création de l'élément SVG
-		var svg = d3.select("body")
-			.append("svg")
-			.attr("width", larg)
-			.attr("height", haut);
-		
-		svg.append("path")
-			.datum(topojson.feature(dataset, dataset.objects.depts))
-			.attr("class", "depts")
-			.attr("d", path);
-	
-		var features = topojson.feature(dataset, dataset.objects.depts).features;
-		var maxVal = 0;
-		var cerclesDepts = features.map(function (feature){
-			var nh = feature.properties["NbHotels2017"];
-			// Recherche de la valeur max. à dessiner
-			if (maxVal<nh) maxVal = nh;
-			return {"nbh": nh, "ctr": path.centroid(feature)};
-		});
-		
-		// Tri des cercles dans l'ordre décroissant de taille
-		cerclesDepts.sort(function(x,y){
-			return d3.descending(x.nbh, y.nbh);
-		});
-		
-		//Calcul du coefficient pour que maxVal soit dessinée avec un rayon max. de 20 pixels.
-		var coefSymboles = 20 / Math.sqrt(maxVal);
-		
-		var carte = svg.selectAll(".cercles").data(cerclesDepts)
-			.enter().append("circle")
-			.attr("class", "cercles")
-			.attr("cx", function (d){return d.ctr[0]})
-			.attr("cy", function (d){return d.ctr[1]})
-			.attr("r", function (d){return Math.sqrt(d.nbh) * coefSymboles});
+	var path = d3.geoPath().projection(projectionEA);
 
-	}
+	//Création de l'élément SVG
+	var svg = d3.select("body")
+		.append("svg")
+		.attr("width", larg)
+		.attr("height", haut);
+	
+	svg.append("path")
+		.datum(topojson.feature(dataset, dataset.objects.depts))
+		.attr("class", "depts")
+		.attr("d", path);
+
+	var features = topojson.feature(dataset, dataset.objects.depts).features;
+	var maxVal = 0;
+	var cerclesDepts = features.map(function (feature){
+		var nh = feature.properties["NbHotels2017"];
+		// Recherche de la valeur max. à dessiner
+		if (maxVal<nh) maxVal = nh;
+		return {"nbh": nh, "ctr": path.centroid(feature)};
+	});
+	
+	// Tri des cercles dans l'ordre décroissant de taille
+	cerclesDepts.sort(function(x,y){
+		return d3.descending(x.nbh, y.nbh);
+	});
+	
+	//Calcul du coefficient pour que maxVal soit dessinée avec un rayon max. de 20 pixels.
+	var coefSymboles = 20 / Math.sqrt(maxVal);
+	
+	var carte = svg.selectAll(".cercles").data(cerclesDepts)
+		.enter().append("circle")
+		.attr("class", "cercles")
+		.attr("cx", function (d){return d.ctr[0]})
+		.attr("cy", function (d){return d.ctr[1]})
+		.attr("r", function (d){return Math.sqrt(d.nbh) * coefSymboles});
 	</script>
-</head>
-<body>
-	<script type="text/javascript">
-	var dataset;
-		d3.json("data/frdept_hotels.json", function(error, dataset) {
-			if (error) throw error;
-			draw(dataset);
-		});
-		
-	</script>
-</body>
 </html>

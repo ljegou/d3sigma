@@ -4,11 +4,18 @@
 	<script src="https://ljegou.github.io/d3sigma/scripts/d3.v4.min.js"></script>
 	<script src="https://ljegou.github.io/d3sigma/scripts/topojson.min.js"></script>
 	<script type="text/javascript">
+	var dataset;
+
+	d3.json("data/frdept_hotels.json", function(error, data) {
+		dataset = data;
+		if (error) throw error;
+	});
+	
 	//Largeur et hauteur du graphe
 	var larg = 600;
 	var haut = 600;
 
-	var projection1 = d3.geo.orthographic()
+	var projection1 = d3.geoOrthographic()
 	    .scale(280) //Échelle
 	    .translate([larg / 2, haut / 2]) //Dimensions
 		.rotate([-4, -48]) //France au centre
