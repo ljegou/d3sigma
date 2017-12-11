@@ -16,12 +16,13 @@
 		var larg = 600;
 		var haut = 600;
 
-		var projection = d3.geoOrthographic()
-		    .scale(280) //Échelle
-		    .translate([larg / 2, haut / 2]) //Dimensions
-			.rotate([-4, -48]) //France au centre
-		    .clipAngle(90)
-		    .precision(.1);
+		var projection = d3.geoAlbers()
+		.rotate([-2, 0])
+		.center([-4, 47.6])
+		.parallels([29.5, 45.5])
+		.scale(2800)
+		.translate([larg / 2 - 140, haut / 2 - 120])
+		.precision(.1);
 
 		var path = d3.geoPath()
 		    .projection(projection);
