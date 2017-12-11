@@ -39,7 +39,13 @@ iframe {
 
 	var slug = window.location.hash.slice(1);
 
-	var defaultContent = '<!DOCTYPE html><html></html>';
+	var defaultContent = '<!DOCTYPE html>
+	<html>
+		<head>
+		</head>
+		<body>
+		</body>
+	</html>';
 
 if (slug)
   d3.text('./examples/' + slug + '.html', function(err, res) {
