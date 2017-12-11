@@ -34,7 +34,7 @@
 			.attr("height", haut);
 
 		svg.append("path")
-		    .datum(topojson.feature(dataset, dataset.objects.departements))
+		    .datum(topojson.feature(dataset, dataset.objects.depts))
 		    .attr("class", "land")
 		    .attr("d", path);
 	}
